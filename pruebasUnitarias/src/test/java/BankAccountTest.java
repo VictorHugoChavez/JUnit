@@ -1,6 +1,8 @@
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.time.Duration;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class BankAccountTest {
@@ -43,5 +45,13 @@ public class BankAccountTest {
         BakAccount bank=new BakAccount(500,0);
         bank.setHolderName("Victor");
         assertNotNull(bank.getHolderName());
+    }
+
+    @Test
+    @DisplayName("Test speed deposit")
+    public void tesDepositTineme(){
+        BakAccount bakAccount=new BakAccount(500 ,0);
+        assertTimeout(Duration.ofNanos(10),()->bakAccount.deposit(200));
+        assertEquals(0.0,1/3,"Opps, not the same");
     }
 }
